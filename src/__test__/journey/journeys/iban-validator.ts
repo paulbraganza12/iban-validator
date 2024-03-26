@@ -14,6 +14,7 @@ describe("Iban validator", () => {
       .launchApp()
       .onIbanValidationScreen((screen) => {
         screen.enterIban(iban.validIban);
+        screen.submitIban();
       });
 
     then().onIbanValidationScreen((screen) => {
