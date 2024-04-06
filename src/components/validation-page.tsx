@@ -44,7 +44,7 @@ const ValidationPage = () => {
         </button>
       </form>
 
-      {model.isValidationAvailable && <PositiveList items={["x", "y", "z"]} />}
+      {model.isValidationAvailable && <PositiveList items={model.validationResults} />}
     </div>
   );
 };

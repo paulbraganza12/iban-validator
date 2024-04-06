@@ -18,5 +18,31 @@ describe("validation view model retrieval", () => {
 
       expect(result.isValidationAvailable).toBe(true);
     });
+
+    describe("validation results", () => {
+      test("returns empty when validation is unavailable", () => {
+        const validation = undefined;
+
+        const result = createIbanValidationViewModel(validation);
+
+        expect(result.validationResults).toEqual([]);
+      });
+
+      test("returns results when validation is available", () => {
+        const validation = { iban: "x", flags: [] };
+
+        const result = createIbanValidationViewModel(validation);
+
+        expect(result.validationResults).toEqual(["Valid IBAN"]);
+      });
+
+      test("returns results when iban belongs to trusted bank", () => {
+        const validation = { iban: "x", flags: [], bank: { trustScore: 8 } };
+
+        const result = createIbanValidationViewModel(validation);
+
+        expect(result.validationResults).toEqual(["Valid IBAN", "Trusted Bank"]);
+      });
+    });
   });
 });
