@@ -6,11 +6,12 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/node": "^16.18.91",
+    "@types/node": "^18.0.0",
     "@types/react": "^18.2.67",
     "@types/react-dom": "^18.2.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5"
   },
@@ -22,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:unit": "vitest --dir src/__test__/unit",
     "test:journey": "cypress run --project src/__test__/journey",
     "test:journey:open": "cypress open --project src/__test__/journey"
   },
@@ -32,7 +34,8 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.29.1",
-    "prettier": "3.2.5"
+    "prettier": "3.2.5",
+    "vitest": "^1.4.0"
   },
   "browserslist": {
     "production": [
