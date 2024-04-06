@@ -5,7 +5,7 @@ export const validateIban = (iban: string): Interception => {
   return {
     id: "validateIban",
     method: "GET",
-    path: "api/v1/validate-iban",
+    path: "**/validate-iban?iban=*",
     response: {
       body: createIbanValidationResponse(iban),
       statusCode: 200,
