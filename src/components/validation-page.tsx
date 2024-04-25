@@ -1,51 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import ValidationList from "./validation-list";
-import { useQuery } from "react-query";
-import {
-  createIbanValidationApiAdapter,
-  ValidationApiResponse,
-} from "../service/ValidationApiService";
-import { createIbanValidationViewModel } from "../service/ValidationViewModelService";
+import { useIbanValidation } from "../hooks/useIbanValidation";
 
 const ValidationPage = () => {
-  const [formValue, setFormValue] = useState({ iban: "" });
-  const [iban, setIban] = useState(formValue.iban);
-  const { data, error } = useQuery<ValidationApiResponse>(
-    ["validation", iban],
-    createIbanValidationApiAdapter(iban, {}),
-    {
-      enabled: Boolean(iban),
-      retry: false,
-    },
-  );
-
-  const model = createIbanValidationViewModel(data, error);
+  const { onIbanChange, onIbanSubmit, isValidationAvailable, validationError, validationResults } =
+    useIbanValidation();
 
   return (
     <div>
       <h1>Iban validator</h1>
-      <form
-        onSubmit={(event) => {
-          setIban(formValue.iban);
-          event.preventDefault();
-        }}
-      >
+      <form onSubmit={onIbanSubmit}>
         <input
           type="text"
           name="iban"
           placeholder="Enter IBAN"
           data-testid={"iban-input"}
-          onChange={(event) => {
-            setFormValue({ iban: event.target.value });
-          }}
+          onChange={onIbanChange}
         />
         <button type="submit" data-testid={"submit-button"}>
           Check
         </button>
       </form>
 
-      {model.isValidationAvailable && <ValidationList items={model.validationResults} />}
-      {model.validationError && <ValidationList items={[model.validationError]} />}
+      {isValidationAvailable && <ValidationList items={validationResults} />}
+      {validationError && <ValidationList items={[validationError]} />}
     </div>
   );
 };
