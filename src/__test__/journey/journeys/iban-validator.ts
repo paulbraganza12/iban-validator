@@ -4,7 +4,7 @@ import { then } from "../support/assertions";
 import { iban } from "../support/data";
 
 describe("Iban validator", () => {
-  it("should return true for valid iban", () => {
+  it("Valid iban journey", () => {
     given().withBff((bff) => {
       const testIBan = iban.validIban;
       bff.respondsWithIbanValidationResult(testIBan);
@@ -22,5 +22,19 @@ describe("Iban validator", () => {
     });
   });
 
-  it("should return false for invalid iban", () => {});
+  it("Invalid iban journey", () => {
+    given().withBff((bff) => {
+      bff.respondsWithIbanValidationError();
+    });
+    when()
+      .launchApp()
+      .onIbanValidationScreen((screen) => {
+        screen.enterIban(iban.invalidIban);
+        screen.submitIban();
+      });
+
+    then().onIbanValidationScreen((screen) => {
+      screen.ibanInvalidDisplayed();
+    });
+  });
 });

@@ -44,5 +44,25 @@ describe("validation view model retrieval", () => {
         expect(result.validationResults).toEqual(["Valid IBAN", "Trusted Bank"]);
       });
     });
+
+    describe("validation error", () => {
+      test("return error message when iban is invalid", () => {
+        const validation = undefined;
+        const error = new Error();
+
+        const result = createIbanValidationViewModel(validation, error);
+
+        expect(result.validationError).toBe("Invalid IBAN");
+      });
+
+      test("return error message when iban is invalid", () => {
+        const validation = { iban: "x", flags: [] };
+        const error = undefined;
+
+        const result = createIbanValidationViewModel(validation, error);
+
+        expect(result.validationError).toBeUndefined();
+      });
+    });
   });
 });

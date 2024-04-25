@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PositiveList from "./positive-list";
+import ValidationList from "./validation-list";
 import { useQuery } from "react-query";
 import {
   createIbanValidationApiAdapter,
@@ -10,7 +10,7 @@ import { createIbanValidationViewModel } from "../service/ValidationViewModelSer
 const ValidationPage = () => {
   const [formValue, setFormValue] = useState({ iban: "" });
   const [iban, setIban] = useState(formValue.iban);
-  const { data } = useQuery<ValidationApiResponse>(
+  const { data, error } = useQuery<ValidationApiResponse>(
     ["validation", iban],
     createIbanValidationApiAdapter(iban, {}),
     {
@@ -19,7 +19,7 @@ const ValidationPage = () => {
     },
   );
 
-  const model = createIbanValidationViewModel(data);
+  const model = createIbanValidationViewModel(data, error);
 
   return (
     <div>
@@ -44,7 +44,8 @@ const ValidationPage = () => {
         </button>
       </form>
 
-      {model.isValidationAvailable && <PositiveList items={model.validationResults} />}
+      {model.isValidationAvailable && <ValidationList items={model.validationResults} />}
+      {model.validationError && <ValidationList items={[model.validationError]} />}
     </div>
   );
 };

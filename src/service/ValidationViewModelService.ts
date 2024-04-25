@@ -1,8 +1,10 @@
 import { ValidationApiResponse } from "./ValidationApiService";
 
-export function createIbanValidationViewModel(validation?: ValidationApiResponse) {
+export function createIbanValidationViewModel(validation?: ValidationApiResponse, error?: unknown) {
+  const validationError = error ? "Invalid IBAN" : undefined;
   if (!validation) {
     return {
+      validationError,
       validationResults: [],
       isValidationAvailable: false,
     };
@@ -30,6 +32,7 @@ export function createIbanValidationViewModel(validation?: ValidationApiResponse
     results.push("Complies with Payment Services Directive (PSD2)");
   }
   return {
+    validationError,
     validationResults: results,
     isValidationAvailable: Boolean(validation),
   };

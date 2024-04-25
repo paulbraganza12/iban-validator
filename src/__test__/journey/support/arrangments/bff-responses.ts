@@ -12,3 +12,15 @@ export const validateIban = (iban: string): Interception => {
     },
   };
 };
+
+export const inValidIban = (): Interception => {
+  return {
+    id: "InvalidIban",
+    method: "GET",
+    path: "**/validate-iban?iban=*",
+    response: {
+      body: {},
+      statusCode: 400,
+    },
+  };
+};

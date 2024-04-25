@@ -5,6 +5,10 @@ export class Bff {
   public respondsWithIbanValidationResult(iban: string) {
     registerInterceptor(bffResponses.validateIban(iban));
   }
+
+  public respondsWithIbanValidationError() {
+    registerInterceptor(bffResponses.inValidIban());
+  }
 }
 
 class Given {

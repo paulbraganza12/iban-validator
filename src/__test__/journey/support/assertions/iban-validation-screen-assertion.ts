@@ -4,4 +4,8 @@ export class IbanValidationScreenAssertions {
     cy.contains("Positive operation history").should("be.visible");
     cy.contains("Complies with Payment Services Directive (PSD2)").should("be.visible");
   }
+
+  ibanInvalidDisplayed() {
+    cy.contains("Invalid IBAN").should("be.visible");
+  }
 }

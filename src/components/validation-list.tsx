@@ -3,7 +3,7 @@ import React from "react";
 type Prop = {
   items: string[];
 };
-const PositiveList = ({ items }: Prop) => {
+const ValidationList = ({ items }: Prop) => {
   return (
     <ul>
       {items.map((item) => (
@@ -13,4 +13,4 @@ const PositiveList = ({ items }: Prop) => {
   );
 };
 
-export default PositiveList;
+export default ValidationList;
