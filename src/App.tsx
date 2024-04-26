@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
-import ValidationPage from "./components/validation-page";
+import Validation from "./components/Validation/validation";
 
 function App() {
   const queryClient = new QueryClient();
@@ -8,7 +8,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        <ValidationPage />
+        <Validation />
       </div>
     </QueryClientProvider>
   );

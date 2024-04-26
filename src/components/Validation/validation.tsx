@@ -1,6 +1,6 @@
 import React from "react";
-import ValidationList from "./validation-list";
-import { useIbanValidation } from "../hooks/useIbanValidation";
+import ValidationList from "../ValidationList/validation-list";
+import { useIbanValidation } from "../../hooks/useIbanValidation";
 
 const ValidationPage = () => {
   const { onIbanChange, onIbanSubmit, isValidationAvailable, validationError, validationResults } =
