@@ -17,6 +17,7 @@ export function useIbanValidation() {
   );
 
   const onIbanChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
     setFormValue({ iban: event.target.value });
   }, []);
 
@@ -24,5 +25,6 @@ export function useIbanValidation() {
     ...model,
     onIbanChange,
     onIbanSubmit,
+    formValue,
   };
 }
