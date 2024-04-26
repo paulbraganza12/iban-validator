@@ -23,7 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:unit": "vitest --dir src/__test__/unit",
+    "test:unit": "vitest --dir src/__test__/unit --watch=false",
     "test:journey": "cypress run --project src/__test__/journey",
     "test:journey:open": "cypress open --project src/__test__/journey"
   },

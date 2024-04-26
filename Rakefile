@@ -33,7 +33,7 @@ namespace :app do
     end
 
     desc "Runs all checks"
-    task :check => [:'app:format:fix', :'app:lint:fix', :'app:build']
+    task :check => [:'app:format:fix', :'app:lint:fix', :'app:test:unit', :'app:test:journey', :'app:build']
 end
 
 task :default => ['app:check']
